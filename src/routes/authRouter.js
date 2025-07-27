@@ -30,7 +30,7 @@ authRouter.post(
 );
 
 // Log In
-authRouter.get("/log-in", renderLogInForm);
+authRouter.get("/log-in", isNotAuthenticated, renderLogInForm);
 
 authRouter.post(
   "/log-in",
