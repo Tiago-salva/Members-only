@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Messages</title>
+</head>
+<body>
+    <% if (messages.length === 0) { %>
+        <h1>There's no messages!</h1>
+        <p><a href="/messages/new">Create one</a></p>
+    <% } else { %> 
+        <h1>All the messages</h1>
+        <% messages.forEach((message) => { %>
+            <div class="message-container">
+                <h3><%= message.title %></h3>
+                <p><%= message.content %></p>
+                <p><%= message.created_date.toLocaleDateString() %></p>
+            </div>
+        <% }) %>
+    <% } %>
+
+</body>
+</html>
