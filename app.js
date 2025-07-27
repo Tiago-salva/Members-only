@@ -7,6 +7,7 @@ const pgSession = require("connect-pg-simple")(session);
 const authRouter = require("./src/routes/authRouter");
 const initializePassport = require("./config/passport-config");
 const pool = require("./config/db-config");
+const messagesRouter = require("./src/routes/messagesRouter");
 
 app.set("views", path.join(__dirname, "src", "views"));
 app.set("view engine", "ejs");
@@ -33,10 +34,17 @@ app.use(
 app.use(passport.session());
 // Passport
 
+// Da acceso al usuario actual a todos los views
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
+  next();
+});
+
+// Routes
 app.get("/", (req, res) => {
   res.render("home");
 });
-
+app.use("/messages", messagesRouter);
 app.use("/", authRouter);
 
 // Usar variable en .env
