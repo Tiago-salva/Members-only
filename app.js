@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("node:path");
 const app = express();
 const session = require("express-session");
+const flash = require("connect-flash");
 const passport = require("passport");
 const pgSession = require("connect-pg-simple")(session);
 const authRouter = require("./src/routes/authRouter");
@@ -31,9 +32,17 @@ app.use(
     saveUninitialized: false,
   })
 );
-
 app.use(passport.session());
-// Passport
+
+// Flash
+app.use(flash());
+app.use((req, res, next) => {
+  res.locals.messages = {
+    error: req.flash("error"),
+    success: req.flash("success"),
+  };
+  next();
+});
 
 // Da acceso al usuario actual a todos los views
 app.use((req, res, next) => {
