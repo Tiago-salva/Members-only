@@ -1,11 +1,15 @@
 <header>
-    <h1><a href="/">Brothers's Clubhouse</a></h1>
+    <h1><a href="/messages">Brothers's Clubhouse</a></h1>
 
     <nav>
         <ul>
-            <li><a href="/messages">Messages</a></li>
-            <li><a href="/messages/new">Add a message</a></li>
-            <li><a href="/membership">Membership</a></li>
+            
+            <li><a href="/new">Add a message</a></li>
+            
+            <% if(currentUser && !currentUser?.membershipstatus) { %>
+                <li><a href="/membership">Become a member</a></li>
+            <% } %>
+
         </ul>
     </nav>
 
