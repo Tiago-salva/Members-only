@@ -2,7 +2,7 @@ const { validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const db = require("../models/userModel");
 
-// Sign In
+// Sign up
 async function createUserGet(req, res) {
   res.render("sign-up-form");
 }
@@ -23,12 +23,12 @@ async function createUserPost(req, res) {
   res.redirect("/messages");
 }
 
-// Log In
+// Log in
 async function renderLogInForm(req, res) {
   res.render("log-in-form");
 }
 
-// Log Out
+// Log out
 async function logOut(req, res) {
   req.logout((err) => {
     if (err) {
@@ -39,9 +39,29 @@ async function logOut(req, res) {
   });
 }
 
+// Membership status
+async function membershipStatusGet(req, res) {
+  res.render("membership-status");
+}
+
+async function membershipStatusPost(req, res) {
+  const userCode = req.body.membershipCode;
+  const secretCode = "iamaroottree";
+  if (userCode === secretCode) {
+    await db.changeMembershipStatus(res.locals.currentUser.id);
+    // Lo tendria que llevar al perfil
+    res.redirect("/");
+  }
+
+  req.flash("error", "Invalid membership code");
+  res.redirect("/membership");
+}
+
 module.exports = {
   createUserGet,
   createUserPost,
   renderLogInForm,
   logOut,
+  membershipStatusGet,
+  membershipStatusPost,
 };
