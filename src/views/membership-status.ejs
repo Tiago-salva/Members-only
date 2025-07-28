@@ -8,22 +8,24 @@
 <body>
     <%- include("header") %>
 
-    <% if(currentUser.membershipstatus) { %>
-        <h1>You are already a member!</h1>
-    <% } else { %>
-        <h1>Become a member!</h1>
+    <main>
+        <% if(currentUser?.membershipstatus) { %>
+            <h1>You are already a member!</h1>
+            <% } else { %>
+                <h1>Become a member!</h1>
         
-        <% if (messages.error.length> 0) { %>
-            <div class="error">
-                <%= messages.error[0] %>
-            </div>
-        <% } %>
-
-        <form action="/membership" method="post">
-            <label for="membershipCode">Enter the secret code</label>
-            <input name="membershipCode" id="membershipCode" type="text">
-            <button type="submit">Enter</button>
-        </form>
-        <% } %>
+                <% if (messages.error.length> 0) { %>
+                    <div class="error">
+                        <%= messages.error[0] %>
+                    </div>
+                <% } %>
+        
+                    <form action="/membership" method="post">
+                        <label for="membershipCode">Enter the secret code</label>
+                        <input name="membershipCode" id="membershipCode" type="text">
+                        <button type="submit">Enter</button>
+                    </form>
+            <% } %>
+    </main>
 </body>
 </html>

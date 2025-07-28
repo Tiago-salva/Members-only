@@ -4,23 +4,29 @@
     <meta charset="UTF-8">
     <title>Messages</title>
     <link rel="stylesheet" href="../../public/css/header.css">
+    <link rel="stylesheet" href="../../public/css/messages.css">
 </head>
 <body>
     <%- include("header") %>
 
-    <% if (messages.length === 0) { %>
-        <h1>There's no messages!</h1>
-        <p><a href="/messages/new">Create one</a></p>
-    <% } else { %> 
-        <h1>All the messages</h1>
-        <% messages.forEach((message) => { %>
-            <div class="message-container">
-                <h3><%= message.title %></h3>
-                <p><%= message.content %></p>
-                <p><%= message.created_date.toLocaleDateString() %></p>
-            </div>
-        <% }) %>
-    <% } %>
+    <main>
+        <% if (messages.length === 0) { %>
+            <h1>There's no messages!</h1>
+            <p><a href="/messages/new">Create one</a></p>
+        <% } else { %> 
+                <h1>All the messages</h1>
+                <div class="messages">
+                    <% messages.forEach((message) => { %>
+                        <div class="message-container">
+                            <p><%= currentUser?.membershipstatus ? message.username : "Anonymous" %></p>
+                            <h3><%= message.title %></h3>
+                            <p><%= message.content %></p>
+                            <p><%= message.created_date.toLocaleDateString() %></p>
+                        </div>
+                    <% }) %>
+                </div>
+            <% } %>
+    </main>
 
 </body>
 </html>
