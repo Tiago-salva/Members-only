@@ -13,6 +13,7 @@ app.set("views", path.join(__dirname, "src", "views"));
 app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static(__dirname));
 
 // Passport
 initializePassport(passport);
