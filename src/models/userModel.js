@@ -2,9 +2,9 @@ const pool = require("../../config/db-config");
 
 async function insertUser(user, hashedPassword) {
   await pool.query(
-    `INSERT INTO users (firstname, lastname, email, password, membershipstatus)
+    `INSERT INTO users (firstname, lastname, username, password, membershipstatus)
         VALUES ($1, $2, $3, $4, $5)`,
-    [user.firstName, user.lastName, user.email, hashedPassword, false]
+    [user.firstName, user.lastName, user.username, hashedPassword, false]
   );
 }
 
