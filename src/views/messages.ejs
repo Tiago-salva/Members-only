@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Messages</title>
+    <link rel="stylesheet" href="../../public/css/header.css">
 </head>
 <body>
+    <%- include("header") %>
+
     <% if (messages.length === 0) { %>
         <h1>There's no messages!</h1>
         <p><a href="/messages/new">Create one</a></p>
