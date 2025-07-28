@@ -50,7 +50,7 @@ async function membershipStatusPost(req, res) {
   if (userCode === secretCode) {
     await db.changeMembershipStatus(res.locals.currentUser.id);
     // Lo tendria que llevar al perfil
-    res.redirect("/");
+    res.redirect("/messages");
   }
 
   req.flash("error", "Invalid membership code");

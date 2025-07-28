@@ -7,7 +7,7 @@ const {
 const { isAuthenticated } = require("../middleware/authMiddleware");
 const messagesRouter = Router();
 
-messagesRouter.get("/", isAuthenticated, getAllMessages);
+messagesRouter.get("/messages", getAllMessages);
 
 messagesRouter.get("/new", isAuthenticated, createMessageGet);
 

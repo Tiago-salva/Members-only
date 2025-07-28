@@ -52,7 +52,7 @@ authRouter.post(
     next();
   },
   passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/messages",
     failureRedirect: "/log-in",
     failureFlash: true,
   })
