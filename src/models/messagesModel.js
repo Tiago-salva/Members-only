@@ -1,7 +1,9 @@
 const pool = require("../../config/db-config");
 
 async function getAllMessages() {
-  const { rows } = await pool.query("SELECT * FROM messages");
+  const { rows } = await pool.query(
+    "SELECT messages.*, users.username FROM messages JOIN users ON users.id = messages.user_id"
+  );
   return rows;
 }
 
