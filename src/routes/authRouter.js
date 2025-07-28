@@ -3,7 +3,7 @@ const {
   createUserGet,
   createUserPost,
   renderLogInForm,
-  authenticateUser,
+  logOut,
 } = require("../controllers/authController");
 const { body } = require("express-validator");
 const authRouter = Router();
@@ -18,7 +18,7 @@ authRouter.post(
   [
     body("firstName").notEmpty().withMessage("The first name is obligatory"),
     body("lastName").notEmpty().withMessage("The last name is obligatory"),
-    body("email").isEmail().withMessage("The email must be valid"),
+    body("username").notEmpty().withMessage("The username is obligatory"),
     body("password")
       .isLength({ min: 8 })
       .withMessage("The password must contain at least 8 characters"),
@@ -32,6 +32,7 @@ authRouter.post(
 // Log In
 authRouter.get("/log-in", isNotAuthenticated, renderLogInForm);
 
+// Agregar validacion
 authRouter.post(
   "/log-in",
   passport.authenticate("local", {
@@ -39,5 +40,8 @@ authRouter.post(
     failureRedirect: "/log-in",
   })
 );
+
+// Log Out
+authRouter.get("/log-out", logOut);
 
 module.exports = authRouter;
