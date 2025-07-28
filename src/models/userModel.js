@@ -16,4 +16,10 @@ async function getUserBy(column, value) {
   return rows[0];
 }
 
-module.exports = { insertUser, getUserBy };
+async function changeMembershipStatus(id) {
+  await pool.query("UPDATE users SET membershipstatus = true WHERE id = $1", [
+    id,
+  ]);
+}
+
+module.exports = { insertUser, getUserBy, changeMembershipStatus };
