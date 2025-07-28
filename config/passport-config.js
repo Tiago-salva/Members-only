@@ -9,7 +9,7 @@ function initializePassport(passport) {
         const user = await db.getUserBy("username", username);
 
         if (!user) {
-          return done(null, false, { message: "No user found" });
+          return done(null, false, { message: "User not found" });
         }
 
         const match = await bcrypt.compare(password, user.password);
