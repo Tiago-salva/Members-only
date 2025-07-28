@@ -28,8 +28,20 @@ async function renderLogInForm(req, res) {
   res.render("log-in-form");
 }
 
+// Log Out
+async function logOut(req, res) {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+
+    res.redirect("/log-in");
+  });
+}
+
 module.exports = {
   createUserGet,
   createUserPost,
   renderLogInForm,
+  logOut,
 };
