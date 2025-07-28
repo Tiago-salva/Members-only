@@ -10,6 +10,12 @@
 
     <h1>Log In</h1>
 
+    <% if (messages.error) { %>
+        <p class="error">
+            <%= messages.error %>
+        </p>
+    <% } %>
+
     <form action="/log-in" method="post">
         <div class="form-group">
             <label for="username">Username</label>
