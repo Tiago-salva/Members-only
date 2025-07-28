@@ -14,6 +14,7 @@
             <p>No haz iniciado sesion</p>
         <% } else { %>
             <p><%= currentUser.username %></p>
+            <p>Status: <%= currentUser.membershipstatus ? "Member" : "Not member" %></p>
             <p><a href="/log-out">Log out</a></p>
         <% } %>
     </div>
