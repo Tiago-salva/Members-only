@@ -18,7 +18,16 @@
                 <div class="messages">
                     <% messages.forEach((message) => { %>
                         <div class="message-container">
-                            <p><%= currentUser?.membershipstatus ? message.username : "Anonymous" %></p>
+                            <% if(currentUser?.membershipstatus === "admin") { %>
+                                <form action="/messages/<%= message.id %>/delete" method="post">
+                                    <button type="submit">Delete</button>
+                                </form>
+                            <% } %>
+                            <% if (currentUser && currentUser.membershipstatus !=="None" ) { %>
+                                <p><%= message.username %></p>
+                            <% } else { %>
+                                <p>Anonymous</p>
+                            <% } %>
                             <h3><%= message.title %></h3>
                             <p><%= message.content %></p>
                             <p><%= message.created_date.toLocaleDateString() %></p>
