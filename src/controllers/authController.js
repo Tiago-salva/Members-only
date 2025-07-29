@@ -47,8 +47,13 @@ async function membershipStatusGet(req, res) {
 async function membershipStatusPost(req, res) {
   const userCode = req.body.membershipCode;
   const secretCode = "iamaroottree";
+  const adminCode = "stardewvalley";
   if (userCode === secretCode) {
-    await db.changeMembershipStatus(res.locals.currentUser.id);
+    await db.changeMembershipStatus("Member", res.locals.currentUser.id);
+    // Lo tendria que llevar al perfil
+    res.redirect("/messages");
+  } else if (userCode === adminCode) {
+    await db.changeMembershipStatus("Admin", res.locals.currentUser.id);
     // Lo tendria que llevar al perfil
     res.redirect("/messages");
   }
