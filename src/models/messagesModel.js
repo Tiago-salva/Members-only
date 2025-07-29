@@ -2,7 +2,7 @@ const pool = require("../../config/db-config");
 
 async function getAllMessages() {
   const { rows } = await pool.query(
-    "SELECT messages.*, users.username FROM messages JOIN users ON users.id = messages.user_id"
+    "SELECT messages.*, users.username, users.membershipstatus FROM messages JOIN users ON users.id = messages.user_id"
   );
   return rows;
 }
@@ -14,7 +14,12 @@ async function insertMessage(userId, message) {
   );
 }
 
+async function deleteMessage(id) {
+  await pool.query("DELETE FROM messages WHERE id = $1", [id]);
+}
+
 module.exports = {
   getAllMessages,
   insertMessage,
+  deleteMessage,
 };

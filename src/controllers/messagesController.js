@@ -15,8 +15,15 @@ async function createMessagePost(req, res) {
   res.redirect("/messages");
 }
 
+async function deleteMessage(req, res) {
+  const id = parseInt(req.params.id);
+  await db.deleteMessage(id);
+  res.redirect("/messages");
+}
+
 module.exports = {
   getAllMessages,
   createMessageGet,
   createMessagePost,
+  deleteMessage,
 };
