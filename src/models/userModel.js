@@ -4,7 +4,7 @@ async function insertUser(user, hashedPassword) {
   await pool.query(
     `INSERT INTO users (firstname, lastname, username, password, membershipstatus)
         VALUES ($1, $2, $3, $4, $5)`,
-    [user.firstName, user.lastName, user.username, hashedPassword, false]
+    [user.firstName, user.lastName, user.username, hashedPassword, "none"]
   );
 }
 
@@ -16,8 +16,9 @@ async function getUserBy(column, value) {
   return rows[0];
 }
 
-async function changeMembershipStatus(id) {
-  await pool.query("UPDATE users SET membershipstatus = true WHERE id = $1", [
+async function changeMembershipStatus(value, id) {
+  await pool.query("UPDATE users SET membershipstatus = $1 WHERE id = $2", [
+    value,
     id,
   ]);
 }
