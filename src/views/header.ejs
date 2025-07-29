@@ -4,9 +4,9 @@
     <nav>
         <ul>
             
-            <li><a href="/new">Add a message</a></li>
+            <li><a href="/messages/new">Add a message</a></li>
             
-            <% if(currentUser && !currentUser?.membershipstatus) { %>
+            <% if(currentUser && currentUser?.membershipstatus !== "Admin") { %>
                 <li><a href="/membership">Become a member</a></li>
             <% } %>
 
@@ -18,7 +18,7 @@
             <p>No haz iniciado sesion</p>
         <% } else { %>
             <p><%= currentUser.username %></p>
-            <p>Status: <%= currentUser.membershipstatus ? "Member" : "Not member" %></p>
+            <p>Status: <%= currentUser.membershipstatus %></p>
             <p><a href="/log-out">Log out</a></p>
         <% } %>
     </div>
