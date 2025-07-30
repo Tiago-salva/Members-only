@@ -1,4 +1,6 @@
-<header>
+<script src="../../public/js/main.js" defer></script>
+
+<header data-authenticated="<%= currentUser ? 'true' : 'false' %>">
     <h1><a href="/messages">Brothers's Clubhouse</a></h1>
 
     <nav>
@@ -7,19 +9,21 @@
             <li><a href="/messages/new">Add a message</a></li>
             
             <% if(currentUser && currentUser?.membershipstatus !== "Admin") { %>
-                <li><a href="/membership">Become a member</a></li>
+                <li><a href="/membership">Join the club</a></li>
             <% } %>
 
         </ul>
     </nav>
 
     <div class="profile-container">
-        <% if (!currentUser) { %>
-            <p>No haz iniciado sesion</p>
-        <% } else { %>
-            <p><%= currentUser.username %></p>
-            <p>Status: <%= currentUser.membershipstatus %></p>
-            <p><a href="/log-out">Log out</a></p>
-        <% } %>
+        <button id="profile-button" type="button"><%= currentUser?.username[0].toUpperCase() %></button>
+        <div class="profile-information">
+            <% if (!currentUser) { %>
+                <p>No haz iniciado sesion</p>
+            <% } else { %>
+                <p>Status: <%= currentUser.membershipstatus %></p>
+                <p><a href="/log-out">Log out</a></p>
+            <% } %>
+        </div>
     </div>
 </header>
