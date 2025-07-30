@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Messages</title>
-    <link rel="stylesheet" href="../../public/css/header.css">
+    <link rel="stylesheet" href="../../public/css/headerAndFooter.css">
     <link rel="stylesheet" href="../../public/css/messages.css">
 </head>
 <body>
@@ -24,8 +24,11 @@
                                 </form>
                             <% } %>
                             <% if (currentUser && currentUser.membershipstatus !=="None" ) { %>
-                                <p><%= message.username %></p>
-                                <p><%= message.created_date.toLocaleDateString() %></p>
+                                <div class="message-secret-info">
+                                    <div class="message-img"><%= message.username[0].toUpperCase() %></div>
+                                    <p class="message-username"><%= message.username %></p>
+                                    <p class="message-date"><%= message.created_date.toLocaleDateString() %></p>
+                                </div>
                             <% } else { %>
                                 <p>Anonymous</p>
                             <% } %>
@@ -37,5 +40,6 @@
             <% } %>
     </main>
 
+    <%- include("footer") %>
 </body>
 </html>
