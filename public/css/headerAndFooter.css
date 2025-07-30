@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --beige: #f3f1e5;
+    --white: #f5f5f5;
+    --grey: #d8d8d8;
+    --brown: #bf9661;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--beige);
+}
+
+header h1 {
+    font-size: 1.5rem;
+}
+
+header nav {
+    margin-right: 170px;
+}
+
+header a {
+    text-decoration: none;
+    color: black;
+}
+
+header ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+.profile-container {
+    text-align: center;
+    margin-right: 20px;
+}
+
+.profile-container > #profile-button {
+    height: 50px;
+    width: 50px;
+    background-color: var(--grey);
+    border-radius: 50%;
+    border: none;
+    margin-right: 10px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.profile-container > .profile-information {
+    height: 85px;
+    display: none;
+    position: absolute;
+    background-color: var(--grey);
+    right: 0;
+    top: 70px;
+    padding: 15px 20px;
+    gap: 15px;
+    border-radius: 0 0 0 10px;
+}
+
+.profile-container > .open {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Footer */
+footer {
+    width: 100%;
+    height: 60px;
+    background-color: var(--beige);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer a {
+    text-decoration: none;
+    color: var(--brown);
+}
