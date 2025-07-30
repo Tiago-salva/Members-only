@@ -1,14 +1,26 @@
-const express = require("express");
+// Node.js modules
 const path = require("node:path");
-const app = express();
+
+// Environment variables
+require("dotenv").config();
+
+// Third-party modules
+const express = require("express");
 const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
 const pgSession = require("connect-pg-simple")(session);
-const authRouter = require("./src/routes/authRouter");
+
+// Custom configuration
 const initializePassport = require("./config/passport-config");
 const pool = require("./config/db-config");
+
+// Routes
+const authRouter = require("./src/routes/authRouter");
 const messagesRouter = require("./src/routes/messagesRouter");
+
+// App
+const app = express();
 
 app.set("views", path.join(__dirname, "src", "views"));
 app.set("view engine", "ejs");
@@ -26,10 +38,12 @@ app.use(
       tableName: "session",
       createTableIfMissing: true,
     }),
-    // Reemplazar por .env luego
-    secret: "cats",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24,
+    },
   })
 );
 app.use(passport.session());
@@ -44,7 +58,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Da acceso al usuario actual a todos los views
+// Gives access to all views to currentUser
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
   next();
@@ -54,5 +68,4 @@ app.use((req, res, next) => {
 app.use("/", messagesRouter);
 app.use("/", authRouter);
 
-// Usar variable en .env
 app.listen(3000, () => console.log("App listening on port 3000"));
