@@ -1,5 +1,5 @@
 body {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
@@ -9,7 +9,7 @@ main {
     flex-direction: column;
     align-items: center;
     padding: 30px 10px;
-    gap: 40px;
+    gap: 50px;
     flex-grow: 1;
 }
 
@@ -19,7 +19,7 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 40px;
 }
 
 .message-container {
@@ -76,3 +76,70 @@ main {
 }
 
 /* Create message */
+.new-message > form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.new-message .form-group {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.new-message .form-group > label {
+    font-weight: 600;
+}
+
+.new-message .form-group > input, 
+.new-message .form-group > textarea {
+    padding: 10px 5px;
+    font-size: 1rem;
+}
+
+.new-message .form-group > input:focus,
+.new-message .form-group > textarea:focus {
+    outline: none;
+}
+
+.new-message > form > button {
+    font-size: 1.2rem;
+    background-color: var(--beige);
+    border: 2px solid var(--brown);
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Membership */
+.membership > form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.membership > form > label {
+    font-size: 1.2rem;
+}
+
+ form > input {
+    padding: 10px 5px;
+    font-size: 1rem;
+}
+
+.membership > form > input:focus {
+    outline: none;
+}
+
+.membership > form > button {
+    font-size: 1.2rem;
+    background-color: var(--beige);
+    border: 2px solid var(--brown);
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}

@@ -1,0 +1,102 @@
+:root {
+    --red: #f95e5e;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 10px;
+    gap: 30px;
+    flex-grow: 1;
+}
+
+/* Login */
+.log-in > form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.log-in .form-group {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.log-in .form-group > label {
+    font-weight: 600;
+}
+
+.log-in .form-group > input {
+    padding: 10px 5px;
+    font-size: 1rem;
+}
+
+.log-in .form-group > input:focus {
+    outline: none;
+}
+
+.log-in > form > button {
+    font-size: 1.2rem;
+    background-color: var(--beige);
+    border: 2px solid var(--brown);
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.log-in .form-error {
+    color: var(--red);
+}
+
+/* Sign up */
+.sign-up > form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.sign-up .form-group {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.sign-up .form-group>label {
+    font-weight: 600;
+}
+
+.sign-up .form-group > input {
+    padding: 10px 5px;
+    font-size: 1rem;
+}
+
+.sign-up .form-group > input:focus {
+    outline: none;
+}
+
+.sign-up .form-error {
+    color: var(--red);
+}
+
+.sign-up > form > button {
+    font-size: 1.2rem;
+    background-color: var(--beige);
+    border: 2px solid var(--brown);
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}

@@ -24,11 +24,11 @@ header {
 }
 
 header h1 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 
 header nav {
-    margin-right: 170px;
+    margin-right: 120px;
 }
 
 header a {
@@ -50,9 +50,9 @@ header ul {
 .profile-container > #profile-button {
     height: 50px;
     width: 50px;
-    background-color: var(--grey);
+    background-color: var(--white);
     border-radius: 50%;
-    border: none;
+    border: 2px solid var(--brown);
     margin-right: 10px;
     cursor: pointer;
     font-size: 1.5rem;
@@ -84,6 +84,7 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: auto;
 }
 
 footer a {
