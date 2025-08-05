@@ -4,43 +4,49 @@
     <meta charset="UTF-8">
     <title>Sign Up</title>
     <link rel="stylesheet" href="../../public/css/headerAndFooter.css">
+    <link rel="stylesheet" href="../../public/css/loginAndSignup.css">
 </head>
 <body>
     <%- include("header") %>
 
-    <main>
-        <% if(locals.errors) { %>
-            <ul>
-                <% errors.forEach(err=> { %>
-                    <li>
-                        <%= err.msg %>
-                    </li>
-                    <% }); %>
-            </ul>
-            <% } %>
-        
+    <main class="sign-up">
             <h1>Sign up</h1>
     
             <form action="/sign-up" method="post">
                 <div class="form-group">
                     <label for="firstName">First name</label>
-                    <input name="firstName" id="firstName" type="text">
+                    <input name="firstName" id="firstName" value="<%= formData?.firstName || "" %>" type="text">
+                    <% if (errorMessages?.firstName) { %>
+                        <p class="form-error"><%= errorMessages.firstName %></p>
+                    <% } %>
                 </div>
                 <div class="form-group">
                     <label for="lastName">Last name</label>
-                    <input name="lastName" id="lastName" type="text">
+                    <input name="lastName" id="lastName" value="<%= formData?.lastName || "" %>" type="text">
+                    <% if (errorMessages?.lastName) { %>
+                        <p class="form-error"><%= errorMessages.lastName %></p>
+                    <% } %>
                 </div>
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input name="username" id="username" type="text">
+                    <input name="username" id="username" value="<%= formData?.username || "" %>" type="text">
+                    <% if (errorMessages?.username) { %>
+                        <p class="form-error"><%= errorMessages.username %></p>
+                    <% } %>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input name="password" id="password" type="password">
+                    <input name="password" id="password" value="<%= formData?.password || "" %>" type="password">
+                    <% if (errorMessages?.password) { %>
+                        <p class="form-error"><%= errorMessages.password %></p>
+                    <% } %>
                 </div>
                 <div class="form-group">
                     <label for="confirmPassword">Confirm password</label>
-                    <input name="confirmPassword" id="confirmPassword" type="password">
+                    <input name="confirmPassword" id="confirmPassword" value="<%= formData?.confirmPassword || "" %>" type="password">
+                    <% if (errorMessages?.confirmPassword) { %>
+                        <p class="form-error"><%= errorMessages.confirmPassword %></p>
+                    <% } %>
                 </div>
     
                 <button type="submit">Create account</button>

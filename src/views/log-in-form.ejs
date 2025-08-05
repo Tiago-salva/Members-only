@@ -4,33 +4,41 @@
     <meta charset="UTF-8">
     <title>Log In</title>
     <link rel="stylesheet" href="../../public/css/headerAndFooter.css">
+    <link rel="stylesheet" href="../../public/css/loginAndSignup.css">
 </head>
 <body>
     <%- include("header") %>
 
-    <main>
+    <main class="log-in">
         <h1>Log In</h1>
-        
-        <% if (messages.error) { %>
-            <p class="error">
-                <%= messages.error %>
-            </p>
-            <% } %>
-        
-            <form action="/log-in" method="post">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input name="username" id="username" type="text">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input name="password" id="password" type="password">
-                </div>
-    
-                <button type="submit">Log in</button>
-            </form>
+        <% console.log(formData?.username)
+         %>
+        <form action="/log-in" method="post">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input name="username" id="username" type="text">
+                <% if(errorMessages?.username) { %>
+                    <p class="form-error"><%= errorMessages.username %></p>
+                <% } %>
+                
+                <% if(messages?.error == "User not found") { %>
+                    <p class="form-error"><%= messages.error %></p>
+                <% } %>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input name="password" id="password" type="password">
+                <% if(errorMessages?.password) { %>
+                    <p class="form-error"><%= errorMessages.password %></p>
+                <% } %>
+                <% if(messages?.error == "Incorrect password" ) { %>
+                    <p class="form-error"><%= messages.error %></p>
+                <% } %>
+            </div>
 
-            <p>Don't have an account?<a href="/sign-up">Sign up</a></p>
+            <button type="submit">Log in</button>
+        </form>
+        <p>Don't have an account? <a href="/sign-up">Sign up</a></p>
     </main>
 
     <%- include("footer") %>
