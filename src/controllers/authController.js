@@ -4,28 +4,53 @@ const db = require("../models/userModel");
 
 // Sign up
 async function createUserGet(req, res) {
-  res.render("sign-up-form");
+  res.render("sign-up-form", {
+    errorMessages: {},
+    formData: {},
+  });
 }
 
 async function createUserPost(req, res) {
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
+    const errorMessages = {};
+
+    errors.array().forEach((error) => {
+      errorMessages[error.path] = error.msg;
+    });
+
     return res.render("sign-up-form", {
-      errors: errors.array(),
+      errorMessages,
       formData: req.body,
     });
   }
 
-  const hashedPassword = await bcrypt.hash(req.body.password, 10);
-  await db.insertUser(req.body, hashedPassword);
+  try {
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    await db.insertUser(req.body, hashedPassword);
+    res.redirect("/messages");
+  } catch (err) {
+    let errorMessages = {};
+    if (err.code === "23505") {
+      errorMessages.username = "That username is already taken";
+    } else {
+      errorMessages.general = "Unexpected error, please try again later";
+    }
 
-  res.redirect("/messages");
+    res.render("sign-up-form", {
+      errorMessages,
+      formData: req.body,
+    });
+  }
 }
 
 // Log in
 async function renderLogInForm(req, res) {
-  res.render("log-in-form");
+  res.render("log-in-form", {
+    errorMessages: {},
+    formData: {},
+  });
 }
 
 // Log out
