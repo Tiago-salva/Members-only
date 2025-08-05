@@ -34,7 +34,6 @@ authRouter.post(
 // Log in
 authRouter.get("/log-in", isNotAuthenticated, renderLogInForm);
 
-// Agregar validacion
 authRouter.post(
   "/log-in",
   [
@@ -43,9 +42,15 @@ authRouter.post(
   ],
   (req, res, next) => {
     const errors = validationResult(req);
+    const errorMessages = {};
+
     if (!errors.isEmpty()) {
+      errors.array().forEach((error) => {
+        errorMessages[error.path] = error.msg;
+      });
       return res.render("log-in-form", {
-        errors: errors.array(),
+        errorMessages,
+        formData: req.body,
       });
     }
 
